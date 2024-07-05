@@ -68,10 +68,21 @@ header h1{
     font-family: var(--ff-heading);
 }
 
+.card:last-child{
+    margin-bottom: 3.2rem;
+}
+
 .card img{
     height: 41.6rem;
     object-fit: cover;
     border-radius: 6px;
+
+    transition: all 200ms;
+}
+
+.card img:hover{
+    transform: scale(1.05);
+    opacity: 0.4 ;
 }
 
 .card h2{
@@ -98,4 +109,74 @@ header h1{
     padding: 0 1.6rem;
     height: 3.8rem;
     width: fit-content;
+}
+
+header{
+    animation: topdown 700ms;
+}
+
+header h1{
+    animation: topdownH1 700ms 200ms backwards;
+}
+
+.card{
+    animation: downtop 1200ms;
+}
+
+.card:first-child{
+    animation: downtopD 1200ms;
+}
+
+.card:last-child{
+    animation: downtopD 1200ms;
+}
+
+@keyframes topdown{
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes topdownH1{
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+@keyframes downtop{
+    0%{
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes downtopD{
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
