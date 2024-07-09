@@ -10,7 +10,8 @@
 
     font-size: 62.5%;
     --fs-body: 1.6rem;
-    --fs-heading: 4.0rem;
+    --fs-heading: 4rem;
+    --fs-heading-sm: clamp(3rem, 1rem + 1vw, 4rem);
 }
 
 *{
@@ -36,6 +37,7 @@ main{
     margin: 0 auto;
 }
 
+
 img{
     width: 100%;
     height: auto;
@@ -45,12 +47,13 @@ header {
     margin: 10rem 0 8rem;
     font-family: var(--ff-heading);
     text-align: center;
+    animation: topdown 700ms;
 }
 
 header p{
     color: var(--fc-secondary);
     text-transform: uppercase;
-
+    
     line-height: 3.2rem;
     letter-spacing: 3px;
     margin-bottom: 1.7rem;
@@ -61,15 +64,18 @@ header h1{
     font-weight: 800;
     font-size: var(--fs-heading);
     line-height: 4.8rem;
+    animation: topdownH1 700ms 200ms backwards;
 }
 
 .card{
     position: relative;
     font-family: var(--ff-heading);
+    animation: downtop 1200ms;
 }
 
 .card:last-child{
     margin-bottom: 3.2rem;
+    animation: downtopD 1200ms;
 }
 
 .card img{
@@ -77,22 +83,26 @@ header h1{
     object-fit: cover;
     border-radius: 6px;
 
+    filter: brightness(0.5) saturate(0.5);
+    
     transition: all 200ms;
 }
 
 .card img:hover{
-    transform: scale(1.05);
-    opacity: 0.4 ;
+    transform: scale(1.03);
+    opacity: 1 ;
+
+    filter: none;
 }
 
 .card h2{
     position: absolute;
     bottom: 5.2rem;
     left: 2.8rem;
-
-    font-size: var(--fs-heading);
+    
+    font-size: var(--fs-heading-sm);
     font-weight: 800;
-
+    
     display: flex;
     flex-direction: column;
     gap: 2.8rem;
@@ -111,23 +121,7 @@ header h1{
     width: fit-content;
 }
 
-header{
-    animation: topdown 700ms;
-}
-
-header h1{
-    animation: topdownH1 700ms 200ms backwards;
-}
-
-.card{
-    animation: downtop 1200ms;
-}
-
 .card:first-child{
-    animation: downtopD 1200ms;
-}
-
-.card:last-child{
     animation: downtopD 1200ms;
 }
 
@@ -136,7 +130,7 @@ header h1{
         opacity: 0;
         transform: translateY(-30px);
     }
-
+    
     100%{
         opacity: 1;
         transform: translateY(0);
@@ -148,21 +142,19 @@ header h1{
         opacity: 0;
         transform: translateY(-30px);
     }
-
+    
     100%{
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-
-
 @keyframes downtop{
     0%{
         opacity: 0;
         transform: translateX(30px);
     }
-
+    
     100%{
         opacity: 1;
         transform: translateX(0);
@@ -174,9 +166,47 @@ header h1{
         opacity: 0;
         transform: translateX(-30px);
     }
-
+    
     100%{
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media(min-width:700px){
+    :root{
+        --fs-heading: 5.6rem;
+    }
+    
+    .page{
+        max-width: 117rem;
+        padding: 0 5rem;
+    }
+    main{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(min-width: 900px) {
+
+    main{
+        grid-template-areas: "A B B"
+        "C C D";
+    }
+    
+    main :nth-child(1){
+        grid-area: A;
+    }
+        
+    main :nth-child(2){
+        grid-area: B;
+    }
+        
+    main :nth-child(3){
+        grid-area: C;
+    }
+        
+    main :nth-child(4){
+        grid-area: D;
     }
 }
